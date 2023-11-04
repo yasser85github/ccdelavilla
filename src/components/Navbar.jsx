@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { HiBars3 } from "react-icons/hi2";
@@ -15,31 +15,15 @@ const links = [
 
 export default function Navbar() {
   const [navOpen, setNavOpen] = useState(false);
-  const [dimensions, setDimensions] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight,
-  });
 
-  const mobileMenuHandler = () => {
-    setNavOpen(!navOpen);
+  const openMenu = () => {
+    setNavOpen(true);
   };
 
-  useEffect(() => {
-    function handleResize() {
-      setDimensions({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-      // When the window resize we set the navOpen false
-      if (dimensions.width > 768 && navOpen) {
-        setNavOpen(false);
-      }
-    }
-    window.addEventListener("resize", handleResize);
-    return (_) => {
-      window.removeEventListener("resize", handleResize);
-    };
-  });
+  const closeMenu = () => {
+    setNavOpen(false);
+  };
+
   return (
     <>
       <header className="py-7 bg-orange-700">
@@ -69,7 +53,7 @@ export default function Navbar() {
               >
                 Comenzar
               </Link>
-              <button className="block lg:hidden" onClick={mobileMenuHandler}>
+              <button className="block lg:hidden" onClick={openMenu}>
                 <HiBars3 className="text-3xl text-white" />
               </button>
             </div>
@@ -87,14 +71,11 @@ export default function Navbar() {
       >
         <div
           className="h-screen w-screen z-[999] top-0 fixed bg-black bg-opacity-50"
-          onClick={mobileMenuHandler}
+          onClick={closeMenu}
         ></div>
         <div className="bg-white fixed top-0 right-0 z-[9999] w-[380px] h-screen ">
           <div className="h-14 px-10 border-b flex items-center">
-            <button
-              className="flex items-center space-x-3"
-              onClick={mobileMenuHandler}
-            >
+            <button className="flex items-center space-x-3" onClick={closeMenu}>
               <GrClose />
               <span>Cerrar</span>
             </button>
