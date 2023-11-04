@@ -8,9 +8,9 @@ import { GrClose } from "react-icons/gr";
 import { BiChevronRight } from "react-icons/bi";
 
 const links = [
-  { id: 3, title: "Blog", url: "/" },
-  { id: 2, title: "Nosotros", url: "/" },
-  { id: 4, title: "Contáctenos", url: "/" },
+  { id: 3, title: "Blog", url: "/blog" },
+  { id: 2, title: "Nosotros", url: "/about" },
+  { id: 4, title: "Contáctenos", url: "/contact" },
 ];
 
 export default function Navbar() {
